@@ -1,0 +1,6 @@
+{
+  "watch": ["src"],
+  "ext": ".mts,.ts,.js",
+  "ignore": [],
+  "exec": "ts-node-esm ./src/index.mts"
+}
