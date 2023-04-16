@@ -3,6 +3,7 @@
 This barometer provides you with an estimation about whether the odds are with or against you to reap better than average returns investing in S&P 500 index. It combines several indicators into an aggregate score indicating the current phase of the ongoing market cycle. The aim of the barometer is to offer better signals for long term investment opportunities than the [CNN one](https://edition.cnn.com/markets/fear-and-greed) currently does.
 
 ## Planned indicators
+
 * [FINRA margin debt](https://www.finra.org/investors/learn-to-invest/advanced-investing/margin-statistics)
 * Drawdown from ATH
 * Current price's relationship to e.g. 200 week MA/EMA
