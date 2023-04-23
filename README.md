@@ -10,4 +10,6 @@ This barometer provides you with an estimation about whether the odds are with o
 * Put/call ratio
 * [AAII Sentiment Survey](https://www.aaii.com/sentimentsurvey?)
 
+[S&P 500 Price Data Provided by Financial Modeling Prep](https://financialmodelingprep.com/developer/docs/)
+
 *Disclaimer: The contents of this application/site/service should NOT be considered as financial advice. You should always do your own research before investing in asset of any kind. Therefore, I will not be liable for any financial damage resulting from the use of this barometer.*
