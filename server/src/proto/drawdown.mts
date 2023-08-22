@@ -17,6 +17,7 @@ interface HistoricalPrice {
 }
 
 const fetchDrawdown = async (): Promise<HistoricalPrice[]> => { 
+  // Five years of price history
   const response = await axios.get(
     `https://financialmodelingprep.com/api/v3/historical-price-full/SPY?apikey=${process.env.FMP_API_KEY}`
   );

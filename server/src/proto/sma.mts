@@ -2,6 +2,7 @@ import axios from "axios";
 
 const fetchSmas = async (): Promise<any> => {
   try {
+    // Data is provided from every working day since 2003-09-10
     const responses = await Promise.all([
       axios.get(`https://financialmodelingprep.com/api/v3/technical_indicator/daily/SPY?period=1000&type=sma&apikey=${process.env.FMP_API_KEY}`),
       axios.get(`https://financialmodelingprep.com/api/v3/technical_indicator/daily/SPY?period=500&type=sma&apikey=${process.env.FMP_API_KEY}`),
