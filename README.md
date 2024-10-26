@@ -7,10 +7,15 @@ This barometer provides you with an estimation about whether the odds are with o
 * [FINRA margin debt](https://www.finra.org/investors/learn-to-invest/advanced-investing/margin-statistics)
 * Drawdown from ATH
 * Current price's relationship to e.g. 200 week MA/EMA
+* Stocks above 50 day average
 * Put/call ratio
 * [AAII Sentiment Survey](https://www.aaii.com/sentimentsurvey)
 * [AAII Asset Allocation Survey](https://www.aaii.com/assetallocationsurvey)
 
 [S&P 500 Price Data Provided by Financial Modeling Prep](https://financialmodelingprep.com/developer/docs)
+
+## How to run locally
+
+```nodemon start```
 
 *Disclaimer: The contents of this application/site/service should NOT be considered as financial advice. You should always do your own research before investing in asset of any kind. Therefore, I will not be liable for any financial damage resulting from the use of this barometer.*
