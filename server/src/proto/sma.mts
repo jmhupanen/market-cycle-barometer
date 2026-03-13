@@ -1,29 +1,33 @@
 import axios from "axios";
 
+const calcSma = (prices: number[], period: number) =>
+  prices.slice(0, period).reduce((sum, p) => sum + p, 0) / period;
+
 const fetchSmas = async (): Promise<any> => {
   try {
-    // Data is provided from every working day since 2003-09-10
-    const responses = await Promise.all([
-      axios.get(`https://financialmodelingprep.com/api/v3/technical_indicator/daily/SPY?period=1000&type=sma&apikey=${process.env.FMP_API_KEY}`),
-      axios.get(`https://financialmodelingprep.com/api/v3/technical_indicator/daily/SPY?period=500&type=sma&apikey=${process.env.FMP_API_KEY}`),
-      axios.get(`https://financialmodelingprep.com/api/v3/technical_indicator/daily/SPY?period=250&type=sma&apikey=${process.env.FMP_API_KEY}`)
-    ]);
-    
-    const sma200Data = responses[0].data;
-    const sma100Data = responses[1].data;
-    const sma50Data = responses[2].data;
+    const response = await axios.get(
+      `https://financialmodelingprep.com/stable/historical-price-eod/full?symbol=SPY&apikey=${process.env.FMP_API_KEY}`
+    );
 
-    const isUnder200Week = sma200Data[0].close < sma200Data[0].sma;
-    const isUnder100Week = sma100Data[0].close < sma100Data[0].sma;
-    const isUnder50Week = sma50Data[0].close < sma50Data[0].sma;
+    const prices: { date: string; close: number }[] = response.data;
+    const closes = prices.map(p => p.close);
+    const latestClose = closes[0];
 
-    const is200WeekDecreasing = sma200Data[0].sma < sma200Data[1].sma;
+    const sma1000 = calcSma(closes, 1000); // 200-week
+    const sma500  = calcSma(closes, 500);  // 100-week
+    const sma250  = calcSma(closes, 250);  // 50-week
+
+    const prevSma1000 = calcSma(closes.slice(1), 1000);
+
+    const isUnder200Week = latestClose < sma1000;
+    const isUnder100Week = latestClose < sma500;
+    const isUnder50Week  = latestClose < sma250;
+    const is200WeekDecreasing = sma1000 < prevSma1000;
 
     console.log(`SP500 is ${isUnder200Week ? 'under' : 'over'} 200 week MA, ${isUnder100Week ? 'under' : 'over'} 100 week MA, and ${isUnder50Week ? 'under' : 'over'} 50 week MA`);
-
     console.log(`200 week MA is ${is200WeekDecreasing ? 'dipping' : 'going to the moon'}`);
 
-    return sma200Data;
+    return { latestClose, sma1000, sma500, sma250, isUnder200Week, isUnder100Week, isUnder50Week, is200WeekDecreasing };
   } catch (err) {
     console.log(err);
   }

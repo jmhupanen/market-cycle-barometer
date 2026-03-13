@@ -29,7 +29,7 @@ router.get('/sma', async (req, res) => {
   res.send(smas);
 });
 
-router.get('/putcall', async (req, res) => {
+router.get('/put-call', async (req, res) => {
   const pcRatio = await fetchPcRatio();
   res.send({ putCallRatio: pcRatio });
 });

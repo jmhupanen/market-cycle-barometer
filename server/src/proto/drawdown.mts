@@ -19,10 +19,10 @@ interface HistoricalPrice {
 const fetchDrawdown = async (): Promise<HistoricalPrice[]> => { 
   // Five years of price history
   const response = await axios.get(
-    `https://financialmodelingprep.com/api/v3/historical-price-full/SPY?apikey=${process.env.FMP_API_KEY}`
+    `https://financialmodelingprep.com/stable/historical-price-eod/full?symbol=SPY&apikey=${process.env.FMP_API_KEY}`
   );
 
-  const sp500Data: HistoricalPrice[] = response.data["historical"];
+  const sp500Data: HistoricalPrice[] = response.data;
   const athPrice = sp500Data.reduce((prev: HistoricalPrice, curr:  HistoricalPrice) => prev.high > curr.high ? prev : curr).high;
   const latestPrice = sp500Data[0].close;
 
